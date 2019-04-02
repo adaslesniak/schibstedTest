@@ -57,4 +57,12 @@ public class ContentList {
         }
     }
     
+    func pullFromServer() {
+        let articlesData = Backend.getArticles { [weak self] answer in
+            print("got articles: \(answer)")
+        }
+        let topicsData = Backend.getTopics { [weak self] answer in
+            print("got topics: \(answer)")
+        }
+    }
 }

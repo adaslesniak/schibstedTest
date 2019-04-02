@@ -8,5 +8,9 @@ import Foundation
 //TODO: move that to separate subproject so things exposed for other data pieces of data are not exposed to UI pieces, like for example comunication with backend can/should be totally encapsulated away from UI code
 public class ModelCtrl  {
     
+    public static func syncWithBackend() {
+        content.pullFromServer()
+    }
+    
     public static let content = ContentList()
 }

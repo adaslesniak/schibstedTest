@@ -10,6 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        ModelCtrl.syncWithBackend()
         window = UIWindow(frame: CGRect(origin: CGPoint.zero, size: UIScreen.main.bounds.size))
         window?.rootViewController = MainViewNavigator.instantiate()
         window?.makeKeyAndVisible()

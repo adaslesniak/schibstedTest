@@ -8,3 +8,4 @@ public enum Exception : Error { case error(String) }
 
 public typealias Action = () -> Void
 public typealias BoolAction = (Bool) -> Void
+
