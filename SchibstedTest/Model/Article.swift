@@ -2,11 +2,11 @@
 import Foundation
 
 
-class Article {
+public class Article {
     
-    public private(set) var text = JsonDictionary()
-    public private(set) var title: String = ""
-    public private(set) var id: String = ""
+    public private(set) var text = ""
+    public private(set) var title = ""
+    public private(set) var id = ""
     public private(set) var authors = [String]() //lazy, there should be proper struct for authors
     
     
@@ -27,7 +27,7 @@ class Article {
             }
             new.id = theId
             new.title = theTitle
-            new.text = theText
+            new.text = "\(theText)" //TODO it's just NOT_IMPLEMENTED
             new.authors = theAuthors.map({return $0.valueAtPath("title") as? String ?? "anonymous" })
             return new
         } catch {

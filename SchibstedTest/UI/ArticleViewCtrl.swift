@@ -5,6 +5,10 @@ import UIKit
 
 class ArticleViewCtrl: UIViewController {
     
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var titleView: UILabel!
+    @IBOutlet weak var backBtn: UIButton! //don't like code execution defined in IB, so always assign Buttons instead of Actions
+    
     private var delgate: ContentViewDelegate!
     private var card: ArticleCard!
     
@@ -12,7 +16,33 @@ class ArticleViewCtrl: UIViewController {
         let ctrl = ArticleViewCtrl(nibName: "ArticleView", bundle: nil)
         ctrl.delgate = delegate
         ctrl.card = article
+        if ctrl.view != nil {
+            ctrl.setContent() //at this stage view could not load yet
+        }
         return ctrl
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if card != nil {  //this could load before card is assigned
+            setContent()
+        }
+        backBtn.addTarget(self, action: #selector(close), for: .touchUpInside)
+    }
+    
+    private func setContent() {
+        ModelCtrl.article(card.id) { [weak self] article in
+            guard let self = self, let article = article else {
+                print("ERROR without proper log in ArticleViewCtrl.setContent")
+                return
+            }
+            self.textView.text = article.text
+            self.titleView.text = article.title
+        }
+    }
+    
+    @objc private func close() {
+        delgate.onClosed()
     }
     
     

@@ -13,4 +13,13 @@ public class ModelCtrl  {
     }
     
     public static let content = ContentList()
+    
+    public static func article(_ withId: String, whenReady: @escaping (Article?) -> Void) {
+        Backend.getArticle(withId) { article in
+            ExecuteOnMain {
+                whenReady(article)
+            }
+        }
+    }
+    
 }

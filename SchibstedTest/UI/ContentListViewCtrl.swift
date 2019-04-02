@@ -23,10 +23,12 @@ class ContentListViewCtrl : UIViewController {
     private var delegate: ContentListViewDelegate!
     
     //that should be only allowed - idea of init(nibName: bundle:) is destroying encapsulation. It's nobody else business except this controller what is the bundle and what is the name of nib file
-    public static func instantiate(delegate: ContentListViewDelegate) -> ContentListViewCtrl {
-        let ctrl = ContentListViewCtrl(nibName: "ContentListView", bundle: nil)
-        ctrl.delegate = delegate
-        return ctrl
+    public static func instantiate() -> ContentListViewCtrl {
+        return ContentListViewCtrl(nibName: "ContentListView", bundle: nil)
+    }
+    
+    public func setDelegate(_ theDelegate: ContentListViewDelegate) {
+        delegate = theDelegate
     }
     
     override func viewDidLoad() {
