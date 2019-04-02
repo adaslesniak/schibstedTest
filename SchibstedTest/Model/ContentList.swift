@@ -1,10 +1,6 @@
-// ContentList.swift [SchibstedTest] created by: Adas Lesniak on: 01/04/2019
+// [SchibstedTest] created by: Adas Lesniak on: 01/04/2019
 import Foundation
 
-
-
-//"card" in my convention stands for brief info, like library card about book, business card about person - short info with basic details
-public typealias TopicCard = (id: String, title: String)
 
 //contains list of Topics and articles
 public class ContentList {
@@ -58,10 +54,10 @@ public class ContentList {
     }
     
     func pullFromServer() {
-        let articlesData = Backend.getArticles { [weak self] answer in
+        let articlesData = Backend.getArticlesList { [weak self] answer in
             print("got articles: \(answer)")
         }
-        let topicsData = Backend.getTopics { [weak self] answer in
+        let topicsData = Backend.getTopicsList { [weak self] answer in
             print("got topics: \(answer)")
         }
     }
