@@ -30,7 +30,12 @@ class ArticleViewCtrl: UIViewController {
         backBtn.addTarget(self, action: #selector(close), for: .touchUpInside)
     }
     
+    private var isFetchingContent = false
     private func setContent() {
+        guard !isFetchingContent else {
+            return
+        }
+        isFetchingContent = true
         ModelCtrl.article(card.id) { [weak self] article in
             guard let self = self, let article = article else {
                 print("ERROR without proper log in ArticleViewCtrl.setContent")
@@ -38,6 +43,7 @@ class ArticleViewCtrl: UIViewController {
             }
             self.textView.text = article.text
             self.titleView.text = article.title
+            self.isFetchingContent = false
         }
     }
     

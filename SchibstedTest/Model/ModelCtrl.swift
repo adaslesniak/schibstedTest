@@ -16,8 +16,16 @@ public class ModelCtrl  {
     
     public static func article(_ withId: String, whenReady: @escaping (Article?) -> Void) {
         Backend.getArticle(withId) { article in
-            ExecuteOnMain {
+            ExecuteOnMain { //beacuse ModelCtrl is for UI
                 whenReady(article)
+            }
+        }
+    }
+    
+    public static func topic(_ withId: String, whenReady: @escaping (Topic?) -> Void) {
+        Backend.getTopic(withId) { topic in
+            ExecuteOnMain {
+                whenReady(topic)
             }
         }
     }

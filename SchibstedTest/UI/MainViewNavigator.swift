@@ -25,11 +25,8 @@ class MainViewNavigator: UINavigationController, ContentListViewDelegate, Conten
     }
     
     func onArticleSelection(_ selected: ArticleCard) {
-        print("article selected: \(selected.title)")
         detailViewCtrl = ArticleViewCtrl.instantiate(with: selected, delegate: self)
-        print("pushing: \(detailViewCtrl?.view.frame)")
         pushViewController(detailViewCtrl!, animated: true)
-        print("navi: \(viewControllers.count)")
     }
     
     

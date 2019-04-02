@@ -57,4 +57,24 @@ class TestOf_Backend: XCTestCase {
         
         wait(for: expectations, timeout: 1.9)
     }
+    
+    func test_getTopic() {
+        var expectations = [XCTestExpectation]()
+        func addTest(id topicId: String, isValid: Bool) {
+            let requirement = XCTestExpectation(description: "topic: \(topicId) [valid?=\(isValid))")
+            expectations.append(requirement)
+            Backend.getTopic(topicId) { result in
+                let isFound = result != nil
+                XCTAssert(isFound == isValid, requirement.description)
+                requirement.fulfill()
+            }
+        }
+        addTest(id: "2993a182-1317-4ad9-8a27-36416ca49c9f", isValid: true)
+        addTest(id: "826e966b-14bd-461e-8585-19f41d1465d6", isValid: true)
+        addTest(id: "", isValid: false)
+        addTest(id: "ad67597d-1ef1-4066-82e1-b5ab8052f7a2", isValid: true)
+        addTest(id: "fake_id", isValid: false)
+        
+        wait(for: expectations, timeout: 2.1)
+    }
 }
