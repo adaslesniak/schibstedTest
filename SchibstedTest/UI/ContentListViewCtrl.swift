@@ -45,11 +45,9 @@ class ContentListViewCtrl : UIViewController {
         if modeSwitch.selectedSegmentIndex == 0 {
             currentMode = .articles
             view.sendSubviewToBack(topicsList.view)
-            print("articles frame: \(articlesList.view.frame)")
         } else {
             currentMode = .topics
             view.sendSubviewToBack(articlesList.view)
-            print("topics frame: \(topicsList.view.frame)")
         }
         
     }

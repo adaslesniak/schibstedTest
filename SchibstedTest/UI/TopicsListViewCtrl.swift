@@ -21,7 +21,10 @@ class TopicsListViewCtrl: UIViewController, UITableViewDelegate, UITableViewData
         myView.delegate = self
         myView.dataSource = self
         view = myView
-        myView.backgroundColor = UIColor.yellow
+        ModelCtrl.content.updateAboutTopics(self) { [weak self] in
+            self?.tableView.reloadData()
+        }
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
