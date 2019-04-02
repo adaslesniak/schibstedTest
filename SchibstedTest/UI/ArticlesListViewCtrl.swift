@@ -41,22 +41,14 @@ class ArticlesListViewCtrl: UIViewController, UITableViewDelegate, UITableViewDa
             UITableViewCell(style: .default, reuseIdentifier: cellId)
         let data = ModelCtrl.content.articles[indexPath.row]
         cell.textLabel?.text = data.title
-        print("asking for image for: \(data.title)")
         data.getImage() { [weak cell] articleIcon in
             ExecuteOnMain {
-                print("got callback for cell at: \(data.title)")
-                guard let oldCell = cell else {
-                    print("!!!ups - there is no more cell to apply image")
+                guard let oldCell = cell,  oldCell.textLabel?.text == data.title else {
                     return
-                }
-                guard oldCell.textLabel?.text == data.title else {
-                    print("!!!ups - image is outdated, cell was reused for something else")
-                    return
-                } //cell was reused and callback is too late
+                } //cell was reused or even removed and callback is too late
                 oldCell.imageView?.image = articleIcon
                 oldCell.imageView?.frame = CGRect(x: 0, y: 0, width: oldCell.bounds.height, height: oldCell.bounds.height)
                 oldCell.imageView?.contentMode = .scaleAspectFill
-                print("img frame: \(oldCell.imageView!.frame)")
             }
         }
         return cell
