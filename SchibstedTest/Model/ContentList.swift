@@ -54,11 +54,19 @@ public class ContentList {
     }
     
     func pullFromServer() {
-        let articlesData = Backend.getArticlesList { [weak self] answer in
-            print("got articles: \(answer)")
+        Backend.getArticlesList { [weak self] answer in
+            print("got \(answer.count) articles")
+            ExecuteOnMain { [weak self] in
+                self?.articles = answer
+                self?.articlesEventListeners.forEach({$0.action()})
+            }
         }
-        let topicsData = Backend.getTopicsList { [weak self] answer in
-            print("got topics: \(answer)")
+        Backend.getTopicsList { [weak self] answer in
+            print("got \(answer.count) topics")
+            ExecuteOnMain { [weak self] in
+                self?.topics = answer
+                self?.topicsEventListeners.forEach({$0.action()})
+            }
         }
     }
 }

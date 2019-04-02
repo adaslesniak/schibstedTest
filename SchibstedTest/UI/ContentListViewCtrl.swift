@@ -30,10 +30,10 @@ class ContentListViewCtrl : UIViewController {
     
     override func viewDidLoad() {
         ModelCtrl.content.updateAboutTopics(self) {
-            fatalError("NOT_IMPLEMENTED")
+            print("NOT_IMPLEMENTED")
         }
         ModelCtrl.content.updateAboutArticles(self) {
-            fatalError("NOT_IMPLEMENTED")
+            print("NOT_IMPLEMENTED")
         }
     }
 }
