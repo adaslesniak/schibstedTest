@@ -10,7 +10,7 @@ class ArticlesListViewCtrl: UIViewController, UITableViewDelegate, UITableViewDa
     private let cellId = "articles_table_cell"
     
     
-    public func instantiate(_ whenArticleSelected: @escaping SelectionListener) -> ArticlesListViewCtrl {
+    public static func instantiate(_ whenArticleSelected: @escaping SelectionListener) -> ArticlesListViewCtrl {
         let ctrl = ArticlesListViewCtrl()
         ctrl.onSelection = whenArticleSelected
         return ctrl
@@ -21,6 +21,7 @@ class ArticlesListViewCtrl: UIViewController, UITableViewDelegate, UITableViewDa
         myView.delegate = self
         myView.dataSource = self
         view = myView
+        myView.backgroundColor = UIColor.red
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

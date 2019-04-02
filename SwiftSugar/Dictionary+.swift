@@ -81,7 +81,7 @@ public extension Dictionary where Key == String, Value == Any {
 
 
 //============== TEST CODE =================
-class DictionaryAppendAtKeyPathTest {
+/*class DictionaryAppendAtKeyPathTest {
     private enum TestKeys:String {
         case abc1 = "a.b.c.1"
         case d1 = "d.1"
@@ -167,4 +167,4 @@ class DictionaryAppendAtKeyPathTest {
             print("\n")
         }
     }
-}
+}*/

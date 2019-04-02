@@ -4,7 +4,7 @@ import UIKit
 
 
 //It's not classic approach, but to avoid MassiveViewController I belive in idea of "separation of concerns" - this one view controller is responsible for navigating between views. Navigation between views should happened here and only here (or other ViewNavigators if app become big and has dozens of subviews) - it definitely should not be "one more concern of multiple view controllers"
-class MainViewNavigator: UINavigationController, ContentListViewDelegate, ContentViewDelegate {
+class MainViewNavigator: UIViewController, ContentListViewDelegate, ContentViewDelegate {
 
     private var baseViewController: ContentListViewCtrl!
     private var detailViewCtrl: UIViewController?
@@ -13,10 +13,14 @@ class MainViewNavigator: UINavigationController, ContentListViewDelegate, Conten
         return MainViewNavigator()
     }
     
-    //concrete implementation should be probably changed depending on app scale, but since navigation is contained here that is relatively easy task
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    override func loadView() {
+        view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = UIColor.blue
+    }
+    
+    //concrete implementation should be probably changed depending on app scale, but since navigation is contained in one place that is relatively easy task, that helps decouple various view controllers
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let mainListVC = ContentListViewCtrl.instantiate(delegate: self)
         present(mainListVC, animated: false)
         baseViewController = mainListVC

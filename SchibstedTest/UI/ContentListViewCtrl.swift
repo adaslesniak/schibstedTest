@@ -9,9 +9,10 @@ protocol ContentListViewDelegate {
 
 class ContentListViewCtrl : UIViewController {
     
-    @IBOutlet weak var articlesList: UITableView!
-    @IBOutlet weak var topicsList: UITableView!
+    @IBOutlet weak var listPlaceholder: UIView! //it's there to define place for lists
     @IBOutlet weak var modeSwitch: UISegmentedControl!
+    private var articlesList: ArticlesListViewCtrl!
+    private var topicsList: TopicsListViewCtrl!
     
 
     private enum Mode {
@@ -29,11 +30,29 @@ class ContentListViewCtrl : UIViewController {
     }
     
     override func viewDidLoad() {
-        ModelCtrl.content.updateAboutTopics(self) {
-            print("NOT_IMPLEMENTED")
-        }
-        ModelCtrl.content.updateAboutArticles(self) {
-            print("NOT_IMPLEMENTED")
-        }
+        articlesList = ArticlesListViewCtrl.instantiate(delegate.onArticleSelection)
+        addChild(articlesList)
+        articlesList.view.frame = view.bounds
+        view.insertSubview(articlesList.view, at: 0)
+        topicsList = TopicsListViewCtrl.instantiate(delegate.onTopicSelection)
+        addChild(topicsList)
+        topicsList.view.frame = view.bounds
+        view.insertSubview(topicsList.view, at: 0)
+        modeSwitch.addTarget(self, action: #selector(onModeChanged), for: .valueChanged)
     }
+    
+    @objc private func onModeChanged() {
+        if modeSwitch.selectedSegmentIndex == 0 {
+            currentMode = .articles
+            view.sendSubviewToBack(topicsList.view)
+            print("articles frame: \(articlesList.view.frame)")
+        } else {
+            currentMode = .topics
+            view.sendSubviewToBack(articlesList.view)
+            print("topics frame: \(topicsList.view.frame)")
+        }
+        
+    }
+    
+    
 }

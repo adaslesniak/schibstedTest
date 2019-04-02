@@ -10,7 +10,7 @@ class TopicsListViewCtrl: UIViewController, UITableViewDelegate, UITableViewData
     private let cellId = "topics_table_cell"
     
     
-    public func instantiate(_ whenTopicSelected: @escaping SelectionListener) -> TopicsListViewCtrl {
+    public static func instantiate(_ whenTopicSelected: @escaping SelectionListener) -> TopicsListViewCtrl {
         let ctrl = TopicsListViewCtrl()
         ctrl.onSelection = whenTopicSelected
         return ctrl
@@ -21,6 +21,7 @@ class TopicsListViewCtrl: UIViewController, UITableViewDelegate, UITableViewData
         myView.delegate = self
         myView.dataSource = self
         view = myView
+        myView.backgroundColor = UIColor.yellow
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

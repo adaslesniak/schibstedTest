@@ -12,9 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContentListViewCtrl" customModule="SchibstedTest" customModuleProvider="target">
             <connections>
-                <outlet property="articlesList" destination="xJQ-qs-26k" id="CZs-fy-z1V"/>
                 <outlet property="modeSwitch" destination="Joh-PW-r7U" id="PkT-2H-hJh"/>
-                <outlet property="topicsList" destination="ZaO-bj-Ngo" id="iIr-xN-Zb6"/>
                 <outlet property="view" destination="iN0-l3-epB" id="CLC-MH-VYb"/>
             </connections>
         </placeholder>
@@ -31,16 +29,6 @@
                         <segment title="Topics"/>
                     </segments>
                 </segmentedControl>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xJQ-qs-26k" userLabel="ArticlesTable">
-                    <rect key="frame" x="20" y="44" width="374" height="783"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tableView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZaO-bj-Ngo" userLabel="TopicsTableTable">
-                    <rect key="frame" x="20" y="44" width="374" height="783"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
