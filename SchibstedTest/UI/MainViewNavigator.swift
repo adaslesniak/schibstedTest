@@ -6,7 +6,6 @@ import UIKit
 //It's not classic approach, but to avoid MassiveViewController I belive in idea of "separation of concerns" - this one view controller is responsible for navigating between views. Navigation between views should happened here and only here (or other ViewNavigators if app become big and has dozens of subviews) - it definitely should not be "one more concern of multiple view controllers"
 class MainViewNavigator: UINavigationController, ContentListViewDelegate, ContentViewDelegate {
 
-    private var baseViewController: ContentListViewCtrl!
     private var detailViewCtrl: UIViewController?
     
     static func instantiate() -> MainViewNavigator {
@@ -31,16 +30,9 @@ class MainViewNavigator: UINavigationController, ContentListViewDelegate, Conten
     
     
     // ========= DETAILS VIEWS DELEGATE ==========
-    func onClosed() {
+    func closeDetailView() {
         popViewController(animated: true)
-    }
-    
-    func onSwipedToNext() {
-        //TODO: create next to left and animate it to center while animating current out to right
-    }
-    
-    func onSwipedToPrevious() {
-        //TODO: create previous on right and animate it to center while animating current out to left
+        detailViewCtrl = nil
     }
 }
 

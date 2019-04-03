@@ -6,6 +6,11 @@ protocol ContentListViewDelegate {
     func onTopicSelection(_ selected: TopicCard)
 }
 
+enum ContentType {
+    case topics
+    case articles
+}
+
 
 class ContentListViewCtrl : UIViewController {
     
@@ -13,13 +18,7 @@ class ContentListViewCtrl : UIViewController {
     @IBOutlet weak var modeSwitch: UISegmentedControl!
     private var articlesList: ArticlesListViewCtrl!
     private var topicsList: TopicsListViewCtrl!
-    
-
-    private enum Mode {
-        case topics
-        case articles
-    }
-    private var currentMode = Mode.articles
+    private var currentMode = ContentType.articles
     private var delegate: ContentListViewDelegate!
     
     //that should be only allowed - idea of init(nibName: bundle:) is destroying encapsulation. It's nobody else business except this controller what is the bundle and what is the name of nib file
@@ -41,6 +40,15 @@ class ContentListViewCtrl : UIViewController {
         topicsList.view.frame = view.bounds
         view.insertSubview(topicsList.view, at: 0)
         modeSwitch.addTarget(self, action: #selector(onModeChanged), for: .valueChanged)
+        //swiping trough lists - refactor this if there are more than two modes
+        func toggleMode() {
+            modeSwitch.selectedSegmentIndex = (currentMode == .articles) ? 1 : 0
+            onModeChanged()
+        }
+        topicsList.view.addAction(.swipeRight, action: toggleMode)
+        topicsList.view.addAction(.swipeLeft, action: toggleMode)
+        articlesList.view.addAction(.swipeLeft, action: toggleMode)
+        articlesList.view.addAction(.swipeRight, action: toggleMode)
     }
     
     @objc private func onModeChanged() {
@@ -53,6 +61,4 @@ class ContentListViewCtrl : UIViewController {
         }
         
     }
-    
-    
 }

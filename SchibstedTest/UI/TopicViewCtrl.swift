@@ -45,7 +45,7 @@ class TopicViewCtrl: UIViewController {
     }
     
     @objc private func close() {
-        delegate.onClosed()
+        delegate.closeDetailView()
     }
     
 }

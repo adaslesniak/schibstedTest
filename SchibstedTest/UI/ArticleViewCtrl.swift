@@ -48,7 +48,7 @@ class ArticleViewCtrl: UIViewController {
     }
     
     @objc private func close() {
-        delgate.onClosed()
+        delgate.closeDetailView()
     }
     
     
