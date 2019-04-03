@@ -38,7 +38,7 @@ class ArticleViewCtrl: UIViewController {
         isFetchingContent = true
         ModelCtrl.article(card.id) { [weak self] article in
             guard let self = self, let article = article else {
-                print("ERROR without proper log in ArticleViewCtrl.setContent")
+                Log.error("failed to fetch content")
                 return
             }
             self.textView.text = article.text

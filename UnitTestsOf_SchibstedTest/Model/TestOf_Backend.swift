@@ -7,6 +7,7 @@ import XCTest
 @testable import SchibstedTest
 class TestOf_Backend: XCTestCase {
     
+    
     func test_getImageForArticle() {
         let assumption1 = XCTestExpectation(description: "got image for valid case 1")
         let imgId1valid = "312e2e7f-1da4-43bd-98ed-ee14f8e884fa"
@@ -38,6 +39,8 @@ class TestOf_Backend: XCTestCase {
         wait(for: [assumption1, assumption2, assumption3, assumption4], timeout: 7)
     }
     
+    
+    //TODO: those test are broken - need to prepare custom data, can't rely on backend
     func test_getArticle() {
         var expectations = [XCTestExpectation]()
         func addTestCase(articleId: String, isValid: Bool) {
@@ -58,6 +61,7 @@ class TestOf_Backend: XCTestCase {
         wait(for: expectations, timeout: 1.9)
     }
     
+    //TODO: broken test prepare custom test data... but then how can I test Backend?
     func test_getTopic() {
         var expectations = [XCTestExpectation]()
         func addTest(id topicId: String, isValid: Bool) {

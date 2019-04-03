@@ -37,7 +37,7 @@ public class ArticleCard {
             card.imageId = theImage
             return card
         } catch {
-            print("ERROR no proper log to log ArticleCard deserialisation error: \(error)")
+            Log.error("deserialisation error: \(error)")
             return nil
         }
     }

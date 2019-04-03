@@ -31,9 +31,7 @@ public class Article {
             new.authors = theAuthors.map({return $0.valueAtPath("title") as? String ?? "anonymous" })
             return new
         } catch {
-            var keysDscr = "keys are:  "
-            serialised.forEach({ keysDscr = keysDscr + $0.key + "; "})
-            print("ERROR: no log... couldn't deserialise article: \(error)\n    \(keysDscr)")
+            Log.error("couldn't deserialise article: \(error)\n   data:  \(serialised)")
             return nil
         }
     }

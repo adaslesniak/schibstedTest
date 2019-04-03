@@ -1,7 +1,7 @@
 // DictionaryExtension.swift [SwiftSugar] created by: Adas Lesniak on: 18/01/2018
 import Foundation
 
-public typealias JsonDictionary = [String:Any]
+public typealias JsonDictionary = [String:Any]  //it's little lie - Any can go beyond what's encodable  in
 
 //designed for help working with NSDictionary understand as Tree of key value pairs,
 //especially usable with JSON like structures, - NSAttributedString is good example of such structures

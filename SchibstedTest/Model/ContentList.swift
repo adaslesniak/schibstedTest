@@ -55,14 +55,14 @@ public class ContentList {
     
     func pullFromServer() {
         Backend.getArticlesList { [weak self] answer in
-            print("got \(answer.count) articles")
+            Log.debug("got \(answer.count) articles")
             ExecuteOnMain { [weak self] in
                 self?.articles = answer
                 self?.articlesEventListeners.forEach({$0.action()})
             }
         }
         Backend.getTopicsList { [weak self] answer in
-            print("got \(answer.count) topics")
+            Log.debug("got \(answer.count) topics")
             ExecuteOnMain { [weak self] in
                 self?.topics = answer
                 self?.topicsEventListeners.forEach({$0.action()})

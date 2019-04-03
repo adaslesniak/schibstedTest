@@ -25,7 +25,7 @@ public class Topic {
             new.id = theId
             return new
         } catch {
-            print("ERROR no proper log, no topic: \(error)")
+            Log.error("couldn't deserialise: \(error)\n   data: \(serialised)")
             return nil
         }
     }

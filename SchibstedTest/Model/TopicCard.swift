@@ -13,7 +13,7 @@ public class TopicCard {
         let card = TopicCard()
         guard let theId = serialised.valueAtPath("topic_id") as? String,
             let theTitle = serialised.valueAtPath("title") as? String else {
-                print("ERROR: no proper Log to log error when deserialising TopicCard")
+                Log.error("failed to deserialisie TopicCard")
                 return nil
         }
         card.id = theId
