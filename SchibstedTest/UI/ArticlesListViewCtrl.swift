@@ -39,6 +39,7 @@ class ArticlesListViewCtrl: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ??
             UITableViewCell(style: .default, reuseIdentifier: cellId)
+        cell.selectionStyle = .none
         let data = ModelCtrl.content.articles[indexPath.row]
         cell.textLabel?.text = data.title
         data.getImage() { [weak cell] articleIcon in
@@ -46,9 +47,18 @@ class ArticlesListViewCtrl: UIViewController, UITableViewDelegate, UITableViewDa
                 guard let oldCell = cell,  oldCell.textLabel?.text == data.title else {
                     return
                 } //cell was reused or even removed and callback is too late
+                let cellHeight = oldCell.bounds.height
                 oldCell.imageView?.image = articleIcon
-                oldCell.imageView?.frame = CGRect(x: 0, y: 0, width: oldCell.bounds.height, height: oldCell.bounds.height)
-                oldCell.imageView?.contentMode = .scaleAspectFill
+                oldCell.imageView?.frame = CGRect(
+                    x: 0,
+                    y: 0,
+                    width: cellHeight,
+                    height: cellHeight)
+                oldCell.textLabel?.frame = CGRect(
+                    x: cellHeight,
+                    y: 0,
+                    width: oldCell.bounds.width - cellHeight,
+                    height: cellHeight)
             }
         }
         return cell
